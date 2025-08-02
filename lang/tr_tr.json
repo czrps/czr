@@ -1,5 +1,5 @@
 {
-    ".authorMsg": "- Çeviri: <a href='https://www.youtube.com/channel/UC8pzDCIt_CUj8sa7cYgPzHQ'>Tamir-Teknik</a> ve <a href='https://share.google/hCBJV5fFMbd5gJxxZ'>CzR PlayStation Teknik Servis</a> tarafından yapılmıştır.",
+    ".authorMsg": "- Çeviri: <a href='https://www.youtube.com/channel/UC8pzDCIt_CUj8sa7cYgPzHQ' target='_blank'>Tamir-Teknik</a> ve <img src='Adsız.png' alt='CzR Logo' style='height:16px; vertical-align:middle; margin:0 4px;'> <a href='https://share.google/hCBJV5fFMbd5gJxxZ' target='_blank'>CzR PlayStation Teknik Servis</a> tarafından yapılmıştır."
     "DualShock Calibration GUI": "DualShock Kalibrasyon Arayüzü",
     "Unsupported browser. Please use a web browser with WebHID support (e.g. Chrome).": "Desteklenmeyen tarayıcı. Lütfen WebHID desteği olan bir web tarayıcısı kullanın (örneğin, Chrome).",
     "Connect": "Bağlan",
