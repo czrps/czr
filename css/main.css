@@ -128,3 +128,20 @@ dl.row dd {
 /* .ds-i18n {
   color: red;
 } */
+
+/* Deadzone Modal Styles */
+.deadzone-modal .modal-dialog {
+  max-width: 980px;
+}
+
+.deadzone-modal .modal-body {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.deadzone-stick-card {
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}

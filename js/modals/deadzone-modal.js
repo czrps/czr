@@ -17,6 +17,17 @@ let currentStickPositions = {
 let animationFrameId = null;
 
 /**
+ * Get default deadzone settings
+ * @returns {Object} Default deadzone settings
+ */
+function getDefaultDeadzoneSettings() {
+  return {
+    left: { inner: 0, outer: 1.0 },
+    right: { inner: 0, outer: 1.0 }
+  };
+}
+
+/**
  * Initialize deadzone modal
  */
 export function initDeadzoneModal() {
@@ -48,11 +59,14 @@ export function initDeadzoneModal() {
 export function showDeadzoneModal(serialNumber, onSave = null) {
   controllerSerialNumber = serialNumber;
   
-  // Load existing settings
-  currentSettings = Storage.deadzoneSettings.get(serialNumber);
+  // Always reset to default settings on modal open
+  currentSettings = getDefaultDeadzoneSettings();
 
-  // Update UI with loaded settings
+  // Update UI with default settings
   updateUIFromSettings();
+  
+  // Uncheck the "apply to both sticks" checkbox
+  document.getElementById('applyToBothSticks').checked = false;
 
   // Draw initial visualizations
   drawDeadzoneVisualization('left');
@@ -172,7 +186,7 @@ function setupSliderListeners() {
  */
 function setupPresetButtons() {
   const presets = {
-    default: { inner: 5, outer: 95 },
+    default: { inner: 0, outer: 100 },
     tight: { inner: 10, outer: 90 },
     loose: { inner: 2, outer: 98 },
     competitive: { inner: 8, outer: 92 }
@@ -360,9 +374,6 @@ function saveDeadzoneSettings() {
     alert(l('Inner dead zone must be smaller than outer dead zone'));
     return;
   }
-
-  // Save to storage
-  Storage.deadzoneSettings.set(controllerSerialNumber, settings);
 
   // Close modal
   const modal = bootstrap.Modal.getInstance(document.getElementById('deadzoneModal'));

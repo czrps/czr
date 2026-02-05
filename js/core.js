@@ -18,6 +18,7 @@ import {
 import { show_calibration_history_modal } from './modals/calibration-history-modal.js';
 import { FinetuneHistory } from './finetune-history.js';
 import { initDeadzoneModal, showDeadzoneModal } from './modals/deadzone-modal.js';
+import { initDriftAnalysisModal } from './modals/drift-analysis-modal.js';
 
 // Application State - manages app-wide state and UI
 const app = {
@@ -119,6 +120,7 @@ function gboot() {
     show_welcome_modal();
     initCalibrationMethod();
     initDeadzoneModal(); // Initialize deadzone modal
+    initDriftAnalysisModal(); // Initialize drift analysis modal
 
     $("input[name='displayMode']").on('change', on_stick_mode_change);
 
