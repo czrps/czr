@@ -526,13 +526,11 @@ class ControllerManager {
       return 0;
     }
 
-    // Apply outer deadzone
-    if (absValue > outerDeadzone) {
-      return sign;
-    }
-
-    // Scale value between inner and outer deadzone
-    const scaledValue = (absValue - innerDeadzone) / (outerDeadzone - innerDeadzone);
+    // Map input range to output range capped by outerDeadzone
+    // outerDeadzone represents the maximum output magnitude (0..1)
+    const denom = Math.max(1e-6, 1 - innerDeadzone);
+    const normalized = (absValue - innerDeadzone) / denom;
+    const scaledValue = Math.min(1, Math.max(0, normalized)) * outerDeadzone;
     return Math.round(sign * scaledValue * 100) / 100;
   }
 
