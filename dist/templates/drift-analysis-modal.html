@@ -1,0 +1,99 @@
+<div class="modal fade" id="driftAnalysisModal" tabindex="-1" aria-labelledby="driftAnalysisModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title ds-i18n" id="driftAnalysisModalLabel">Drift Analysis</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info mb-3">
+          <i class="fas fa-info-circle"></i>
+          <span class="ds-i18n">This tool measures stick drift by monitoring the stick position when it should be centered. Release both sticks completely and wait for the measurement.</span>
+        </div>
+
+        <div class="row">
+          <!-- Left Stick Analysis -->
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-gamepad"></i>&nbsp;<span class="ds-i18n">Left Stick</span>
+              </div>
+              <div class="card-body text-center">
+                <canvas id="leftDriftCanvas" width="200" height="200" style="border: 1px solid #ddd; border-radius: 8px;"></canvas>
+                <div class="mt-3">
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Drift Distance:</span></strong>
+                    <span id="leftDriftDistance" class="badge bg-secondary ms-2">--</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Drift Percentage:</span></strong>
+                    <span id="leftDriftPercentage" class="badge bg-secondary ms-2">--</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Center Offset:</span></strong>
+                    <span id="leftCenterOffset" class="text-muted ms-2">X: --, Y: --</span>
+                  </div>
+                  <div class="mt-3">
+                    <span id="leftDriftStatus" class="badge bg-success">--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Stick Analysis -->
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-gamepad"></i>&nbsp;<span class="ds-i18n">Right Stick</span>
+              </div>
+              <div class="card-body text-center">
+                <canvas id="rightDriftCanvas" width="200" height="200" style="border: 1px solid #ddd; border-radius: 8px;"></canvas>
+                <div class="mt-3">
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Drift Distance:</span></strong>
+                    <span id="rightDriftDistance" class="badge bg-secondary ms-2">--</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Drift Percentage:</span></strong>
+                    <span id="rightDriftPercentage" class="badge bg-secondary ms-2">--</span>
+                  </div>
+                  <div class="mb-2">
+                    <strong><span class="ds-i18n">Center Offset:</span></strong>
+                    <span id="rightCenterOffset" class="text-muted ms-2">X: --, Y: --</span>
+                  </div>
+                  <div class="mt-3">
+                    <span id="rightDriftStatus" class="badge bg-success">--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Measurement Status -->
+        <div class="alert alert-warning" id="driftMeasurementStatus">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span class="ds-i18n">Measuring drift... Please keep sticks centered and do not touch them.</span>
+        </div>
+
+        <!-- Overall Assessment -->
+        <div class="card mt-3" id="driftAssessment" style="display: none;">
+          <div class="card-header">
+            <i class="fas fa-clipboard-check"></i>&nbsp;<span class="ds-i18n">Overall Assessment</span>
+          </div>
+          <div class="card-body">
+            <p id="driftAssessmentText"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" id="restartDriftAnalysis">
+          <i class="fas fa-redo"></i>&nbsp;<span class="ds-i18n">Restart</span>
+        </button>
+        <button type="button" class="btn btn-secondary ds-i18n" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

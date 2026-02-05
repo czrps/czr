@@ -1,0 +1,299 @@
+/* Main styles for DualShock Calibration GUI */
+
+/* Add padding to body to prevent content from being hidden behind fixed footer */
+body {
+  padding-bottom: 80px;
+}
+
+dl.row dt {
+  font-weight: normal;
+}
+dl.row dd {
+  font-family: monospace;
+}
+
+#left-stick-card,
+#right-stick-card {
+  cursor: pointer;
+  outline: none !important;
+}
+
+.stick-card-active {
+  border: 1px solid #0d6efd !important;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.3) !important;
+}
+
+.stick-card-active .card-header {
+  background-color: #0d6efd !important;
+  color: white !important;
+}
+
+/* Quick Test Icon Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-3px); }
+  60% { transform: translateY(-2px); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(13, 110, 253, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(13, 110, 253, 0.8), 0 0 25px rgba(13, 110, 253, 0.6); }
+}
+
+/* Animation classes for different test types - only animate when accordion is expanded */
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-usb {
+  animation: pulse 1s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-buttons {
+  animation: bounce 0.6s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-haptic {
+  animation: shake 0.5s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-adaptive {
+  animation: pulse 1s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-speaker {
+  animation: bounce 0.6s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-microphone {
+  animation: glow 1.5s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-lights {
+  animation: glow 1.2s ease-in-out infinite !important;
+}
+
+.accordion-item:has(.accordion-collapse.show) i.fas.test-icon-headphone {
+  animation: pulse 1s ease-in-out infinite !important;
+}
+
+/* Quick Test accordion button height reduction */
+#quickTestAccordion .accordion-button {
+  padding: 0.5rem 1rem;
+}
+
+/* Quick Test accordion body tint */
+#quickTestAccordion .accordion-collapse .accordion-body {
+  background-color: rgba(13, 125, 253, 0.05);
+}
+
+/* Skip button hover behavior */
+.skip-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.accordion-header:hover .skip-btn {
+  opacity: 1;
+}
+
+/* Blinking animation for range calibration alert */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.blink-text {
+  animation: blink 1s infinite;
+}
+
+/* Pulsing animation for text */
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulsing-text {
+  animation: pulse-text 0.75s ease-in-out infinite;
+}
+
+/* Set text color to red for internationalized elements */
+/* .ds-i18n {
+  color: red;
+} */
+
+/* Deadzone Modal Styles */
+.deadzone-modal .modal-dialog {
+  max-width: 980px;
+}
+
+.deadzone-modal .modal-body {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.deadzone-stick-card {
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+/* Styles for fine-tuning interface */
+
+/* Styling for coordinate labels - base state to prevent layout shift */
+#finetuneStickCanvasLx-lbl,
+#finetuneStickCanvasLy-lbl,
+#finetuneStickCanvasRx-lbl,
+#finetuneStickCanvasRy-lbl {
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+  background-color: transparent !important;
+}
+
+/* Styling for finetune input boxes - base state to prevent layout shift */
+input[id^="finetune"] {
+  border: 1px solid transparent !important;
+  width: 90px !important;
+  min-width: 90px !important;
+  color: #969696 !important;
+}
+
+/* Styling for highlighted coordinate labels */
+#finetuneStickCanvasLx-lbl.text-primary,
+#finetuneStickCanvasLy-lbl.text-primary,
+#finetuneStickCanvasRx-lbl.text-primary,
+#finetuneStickCanvasRy-lbl.text-primary {
+  color: #0d6efd !important;
+  background-color: rgba(13, 110, 253, 0.1) !important;
+}
+
+/* CSS Grid layout for finetune inputs around canvas */
+.finetune-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+  ". top ."
+  "left center right"
+  ". bottom .";
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: fit-content;
+}
+
+.finetune-top {
+  grid-area: top;
+}
+
+.finetune-left {
+  grid-area: left;
+}
+
+.finetune-center {
+  grid-area: center;
+}
+
+.finetune-right {
+  grid-area: right;
+}
+
+.finetune-bottom {
+  grid-area: bottom;
+}
+
+/* Finetune mode visibility controls */
+.finetune-center-mode {
+  display: block;
+}
+
+.finetune-circularity-mode {
+  display: none;
+}
+
+/* When circularity mode is active */
+#finetuneModal.circularity-mode .finetune-center-mode {
+  display: none;
+}
+
+#finetuneModal.circularity-mode .finetune-circularity-mode {
+  display: block;
+}
+
+/* Hide raw numbers mode - hide input boxes when checkbox is unchecked */
+#finetuneModal.hide-raw-numbers .finetune-top,
+#finetuneModal.hide-raw-numbers .finetune-left,
+#finetuneModal.hide-raw-numbers .finetune-right,
+#finetuneModal.hide-raw-numbers .finetune-bottom {
+  display: none;
+}
+
+/* Hide spacers when raw numbers are hidden */
+#finetuneModal.hide-raw-numbers .spacer.hide-raw-numbers {
+  display: none;
+}
+
+/* Adjust grid layout when raw numbers are hidden - center the canvas */
+#finetuneModal.hide-raw-numbers .finetune-grid {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "center";
+}
+
+/* when element with id finetuneModal has class hide-raw-numbers, hide all elements with id finetuneStickCanvasL and finetuneStickCanvasR */
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasL,
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasR {
+  display: none;
+}
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasL,
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasR {
+  display: block;
+}
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasL_large,
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasR_large
+{
+  display: block;
+}
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasL_large,
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasR_large {
+  display: none;
+}
+
+/* Error slack button toggle states */
+.left-stick-values,
+.right-stick-values {
+  display: block;
+}
+
+.left-stick-slider,
+.right-stick-slider {
+  display: none;
+}
+
+/* When left stick is in slider mode (only in circularity mode) */
+#finetuneModal.circularity-mode #left-stick-card.show-slider .left-stick-values {
+  display: none !important;
+}
+
+#finetuneModal.circularity-mode #left-stick-card.show-slider .left-stick-slider.finetune-circularity-mode {
+  display: block !important;
+}
+
+/* When right stick is in slider mode (only in circularity mode) */
+#finetuneModal.circularity-mode #right-stick-card.show-slider .right-stick-values {
+  display: none !important;
+}
+
+#finetuneModal.circularity-mode #right-stick-card.show-slider .right-stick-slider.finetune-circularity-mode {
+  display: block !important;
+}
+/*# sourceMappingURL=app.css.map */
