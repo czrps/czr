@@ -250,9 +250,12 @@ export const Storage = {
      * @param {string} serialNumber - Controller serial number
      * @returns {Object} Deadzone settings { left: {inner, outer}, right: {inner, outer} }
      */
-    get(serialNumber) {
+    get(serialNumber, useDefault = true) {
       const allSettings = Storage.getObject(Storage.STORAGE_KEYS.DEADZONE_SETTINGS) || {};
-      return allSettings[serialNumber] || {
+      const stored = allSettings[serialNumber];
+      if (stored) return stored;
+      if (!useDefault) return null;
+      return {
         left: { inner: 0.05, outer: 0.95 },
         right: { inner: 0.05, outer: 0.95 }
       };

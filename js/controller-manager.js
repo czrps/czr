@@ -114,10 +114,10 @@ class ControllerManager {
     if (instance) {
       await this._restoreHasChangesState().catch(e => console.warn('Failed to restore changes state:', e));
       
-      // Load deadzone settings for the current controller
+      // Load deadzone settings for the current controller (only if explicitly saved)
       try {
         const serialNumber = await instance.getSerialNumber();
-        this.deadzoneSettings = Storage.deadzoneSettings.get(serialNumber);
+        this.deadzoneSettings = Storage.deadzoneSettings.get(serialNumber, false);
       } catch (e) {
         console.warn('Failed to load deadzone settings:', e);
         this.deadzoneSettings = null;
